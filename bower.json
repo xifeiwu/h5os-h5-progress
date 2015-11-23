@@ -1,0 +1,21 @@
+{
+  "name": "h5-progress",
+  "main": "h5-progress.js",
+  "version": "0.0.1",
+  "authors": [
+    "Sherman Chen <sherman.chen@acadine.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "examples",
+    "test",
+    "karma.conf.js",
+    "README.md"
+  ],
+  "dependencies": {
+    "gaia-component": "git@git.acadine.com:gaia-components/gaia-component.git#~0.0.2"
+  }
+}

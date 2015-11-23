@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>h5-progress</title>
+  <script src="../bower_components/gaia-theme/lib/gaia-theme-selector.js"></script>
+  <script src="../bower_components/gaia-component/gaia-component.js"></script>
+  <script src="../h5-progress.js"></script>
+  <style>
+    h5-progress {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <gaia-theme-selector></gaia-theme-selector>
+
+  <h3>
+    H5-Progress - determinate
+    <button id="manual-step">Load some</button>
+  </h3>
+
+  <h5-progress id="manual-progress" value="0"></h5-progress>
+
+  <h3>H5-Progress - determinate</h3>
+  <h5-progress id="auto-progress" value="0"></h5-progress>
+
+  <h3>H5-Progress - indeterminate</h3>
+  <h5-progress h5-indeterminate=""></h5-progress>
+
+
+
+  <script>
+    var manualProgress = document.getElementById('manual-progress');
+    var manualStep = document.getElementById('manual-step');
+    manualStep.addEventListener('click', function() {
+      manualProgress.value = (manualProgress.value + 10) % 101;
+    });
+
+    var amount = 10;
+    var autoProgress = document.getElementById('auto-progress');
+    window.setInterval(function() {
+      amount += (Math.random() * 20);
+      autoProgress.value = amount % 101;
+    }, 1500);
+  </script>
+</body>
+</html>
