@@ -1,7 +1,7 @@
 {
   "name": "h5-progress",
   "main": "h5-progress.js",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "authors": [
     "Sherman Chen <sherman.chen@acadine.com>"
   ],
