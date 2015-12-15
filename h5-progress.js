@@ -40,6 +40,8 @@ module.exports = component.register('h5-progress', {
 
     this.value = this.getAttribute('value') || 0;
     this.indeterminate = this.getAttribute('h5-indeterminate');
+    this.enableIndeterminateAnimation =
+      this.getAttribute('h5-enable-indeterminate-animation');
   },
 
   fillTime: 2000,
@@ -69,10 +71,27 @@ module.exports = component.register('h5-progress', {
       get: function() { return this._indeterminate; },
       set: function(value) {
         value = !!(value || value === '');
+        this._indeterminate = value;
         if (value) {
           this.shadowElements.inner.classList.add('indeterminate');
           this.shadowElements.inner.classList.add('increasing');
         }
+      }
+    },
+
+    enableIndeterminateAnimation: {
+      get: function() { return this._enableIndeterminateAnimation; },
+      set: function(value) {
+        if (!this.indeterminate) {
+          // Early return if this progress bar is not indeterminate
+          return;
+        }
+
+        value = !!(value || value === '');
+        this.removeAttribute('h5-enable-indeterminate-animation');
+        this._enableIndeterminateAnimation = value;
+        // Add `animation-off` class to stop progress bar animation.
+        this.shadowElements.inner.classList.toggle('animation-off', !value);
       }
     }
   },
@@ -175,6 +194,12 @@ module.exports = component.register('h5-progress', {
 
       .indeterminate.decreasing .post-track {
         width: 0;
+      }
+
+      .indeterminate.animation-off .pre-track,
+      .indeterminate.animation-off .track,
+      .indeterminate.animation-off .post-track {
+        animation: none !important;
       }
 
     </style>
