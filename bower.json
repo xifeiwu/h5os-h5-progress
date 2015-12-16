@@ -16,6 +16,6 @@
     "README.md"
   ],
   "dependencies": {
-    "gaia-component": "git@git.acadine.com:gaia-components/gaia-component.git#~0.0.2"
+    "gaia-component": "gaia-components/gaia-component#~0.0.2"
   }
 }
