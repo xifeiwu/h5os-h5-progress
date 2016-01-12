@@ -39,9 +39,11 @@ module.exports = component.register('h5-progress', {
     }.bind(this));
 
     this.value = this.getAttribute('value') || 0;
+    this.focused = this.getAttribute('focused');
     this.indeterminate = this.getAttribute('h5-indeterminate');
     this.enableIndeterminateAnimation =
       this.getAttribute('h5-enable-indeterminate-animation');
+    this['h5-is-contrast-item'] = this.getAttribute('h5-is-contrast-item');
   },
 
   fillTime: 2000,
@@ -64,6 +66,17 @@ module.exports = component.register('h5-progress', {
         }
 
         this._value = value;
+      }
+    },
+
+    focused: {
+      get: function() { return this._focused; },
+      set: function(value) {
+        value = !!(value || value === '');
+        this._focused = value;
+        if (value) {
+          this.shadowElements.inner.classList.add('focused');
+        }
       }
     },
 
@@ -92,6 +105,16 @@ module.exports = component.register('h5-progress', {
         this._enableIndeterminateAnimation = value;
         // Add `animation-off` class to stop progress bar animation.
         this.shadowElements.inner.classList.toggle('animation-off', !value);
+      }
+    },
+
+    'h5-is-contrast-item': {
+      get: function() { return this._isContrastItem; },
+      set: function(value) {
+        value = !!(value || value === '');
+        if (this._isContrastItem === value) { return; }
+        this._isContrastItem = value;
+        this.shadowElements.inner.classList.toggle('contrast-item', value);
       }
     }
   },
@@ -135,6 +158,16 @@ module.exports = component.register('h5-progress', {
         transition: width 500ms cubic-bezier(0.3, 0, 0.4, 1);
       }
 
+      .focused .track {
+        background: var(--color-gs00f, #ffffff);
+        background-clip: padding-box;
+      }
+
+      .focused.contrast-item .track {
+        background: var(--color-gs100f, #000000);
+        background-clip: padding-box;
+      }
+
       .post-track {
         position: relative;
         background: var(--color-gs65, #6a6a6a);
@@ -151,6 +184,18 @@ module.exports = component.register('h5-progress', {
         background-clip: padding-box;
         box-sizing: content-box;
         transition: width 200ms cubic-bezier(0.3, 0, 0.4, 1);
+      }
+
+      .focused .pre-track,
+      .focused .post-track {
+        background: rgba(255, 255, 255, 0.3);
+        background-clip: padding-box;
+      }
+
+      .focused.contrast-item .pre-track,
+      .focused.contrast-item .post-track {
+        background: rgba(0, 0, 0, 0.3);
+        background-clip: padding-box;
       }
 
       /*
@@ -190,6 +235,14 @@ module.exports = component.register('h5-progress', {
         flex-shrink: 1;
         /* No transparent border color when decreasing */
         border-color: var(--highlight-color, #1c6dea);
+      }
+
+      .focused.indeterminate.decreasing .track {
+        border-color: var(--color-gs00f, #ffffff);
+      }
+
+      .focused.contrast-item.indeterminate.decreasing .track {
+        border-color: var(--color-gs100f, #000000);
       }
 
       .indeterminate.decreasing .post-track {
