@@ -74,9 +74,7 @@ module.exports = component.register('h5-progress', {
       set: function(value) {
         value = !!(value || value === '');
         this._focused = value;
-        if (value) {
-          this.shadowElements.inner.classList.add('focused');
-        }
+        this.shadowElements.inner.classList.toggle('focused', value);
       }
     },
 
