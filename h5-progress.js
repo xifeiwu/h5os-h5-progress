@@ -56,7 +56,7 @@ module.exports = component.register('h5-progress', {
         // Clamp it
         value = Math.min(100, Math.max(0, Number(value)));
 
-        if (value) {
+        if (value || value === 0) {
           var delta = Math.abs(this.value - value);
           var duration = (delta / 100) * this.fillTime;
           this.shadowElements.track.style.width = `${value}%`;
