@@ -268,4 +268,4 @@ module.exports = component.register('h5-progress', {
 :(function(n,w){'use strict';return typeof module=='object'?function(c){
 c(require,exports,module);}:function(c,d){c=(typeof c == 'function')?c:d;
 var m={exports:{}};c(function(n){return w[n];},m.exports,m);w[n]=m.exports;};})
-('h5-progress',this));
+('h5-progress',window));
