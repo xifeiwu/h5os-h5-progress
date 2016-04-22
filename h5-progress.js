@@ -1,3 +1,17 @@
+/**
+ * Copyright statement of Acadine
+ *
+ * This software source code is protected by
+ * Copyright (c) 2016 Acadine Technologies. All rights reserved.
+ *
+ * No part of this code may be reproduced, distributed, or transmitted in any
+ * form or by any means, including copying or other electronic or mechanical
+ * methods, without the prior written permission of Acadine, except as allowed
+ * under applicable licenses.
+ *
+ * Any infringement or unauthorized use, modification, reproduction,
+ * distribution, performance or exploitation will be legally actionable.
+ */
 /* global define */
 ;(function(define){'use strict';define(function(require,exports,module){
 /*jshint esnext:true*/
